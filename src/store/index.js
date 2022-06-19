@@ -28,7 +28,8 @@ export default new Vuex.Store({
       return state.valid
     },
     getCards(state) {
-      if (localStorage.getItem('db') && localStorage.getItem('db').length !== 0) {
+      console.log(JSON.parse(localStorage.getItem('db')).length)
+      if (localStorage.getItem('db') && JSON.parse(localStorage.getItem('db')).length !== 0) {
         state.cards = JSON.parse(localStorage.getItem('db'));
       }
 
