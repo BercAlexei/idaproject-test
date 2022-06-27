@@ -87,7 +87,7 @@ export default {
 <style lang="scss" scoped>
 .form {
   position: sticky;
-  top: 50px;
+  top: 24px;
   background: #fffefb;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
     0px 6px 10px rgba(0, 0, 0, 0.02);
@@ -100,6 +100,7 @@ export default {
     width: 100%;
     background: #7bae73;
     border-radius: 10px;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
@@ -109,6 +110,7 @@ export default {
     padding: 10px 0 11px;
     border: none;
     cursor: pointer;
+    margin-top: 24px;
 
     &:disabled {
       cursor: default;
@@ -121,8 +123,8 @@ export default {
     position: relative;
     margin-bottom: 16px;
 
-    &:last-child {
-      margin-bottom: 0;
+    &:nth-child(4) {
+      margin: 0;
     }
 
     .inputText {
@@ -136,6 +138,7 @@ export default {
       font-size: 12px;
       line-height: 15px;
       color: #3f3f3f;
+      margin-top: 4px;
 
       &::placeholder {
         font-style: normal;
@@ -170,7 +173,7 @@ export default {
       position: relative;
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 10px;
       line-height: 13px;
       letter-spacing: -0.02em;
       color: #49485e;

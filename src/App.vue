@@ -48,10 +48,7 @@ export default {
     ...mapGetters(["getCards", "getCondition"]),
   },
   methods: {
-    ...mapMutations([
-      "updateCondition",
-      "updateLocaleStarage",
-    ]),
+    ...mapMutations(["updateCondition", "updateLocaleStarage"]),
   },
   beforeUpdate() {
     this.updateLocaleStarage();
@@ -60,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Source+Sans+Pro:wght@400;600&display=swap");
 
 * {
   font-family: "Source Sans Pro", sans-serif;
@@ -68,7 +65,7 @@ export default {
 
 #app {
   min-height: 100vh;
-  background: #e5e5e5;
+  background: rgba(255, 254, 251, 0.8);
   padding: 32px 0;
 }
 
@@ -84,7 +81,7 @@ export default {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   border: none;
-  padding: 10px 32px 11px 16px;
+  padding: 10px 23px 11px 16px;
   cursor: pointer;
   font-style: normal;
   font-weight: 400;
@@ -92,17 +89,18 @@ export default {
   line-height: 15px;
   color: #b4b4b4;
   appearance: none;
+  max-width: 100%;
 }
 
 .select {
   position: relative;
-
+  max-width: 120px;
   &::after {
     content: "";
     position: absolute;
     display: block;
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     top: 50%;
     transform: translateY(-50%);
     right: 16px;
