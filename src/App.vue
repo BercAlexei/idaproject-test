@@ -45,13 +45,13 @@ export default {
     Card,
   },
   computed: {
-    ...mapGetters(["getCards", "getCondition"]),
+    ...mapGetters(["getCards"]),
   },
   methods: {
-    ...mapMutations(["updateCondition", "updateLocaleStarage"]),
+    ...mapMutations(["updateCondition", "updateLocaleStorage"]),
   },
   beforeUpdate() {
-    this.updateLocaleStarage();
+    this.updateLocaleStorage();
   },
 };
 </script>

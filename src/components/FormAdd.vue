@@ -1,85 +1,52 @@
 <template>
   <form class="form" @input="validate()" @submit.prevent="addCard()">
-    <div class="form__input">
-      <span class="head-input" :class="{ 'head-input_require': true }"
-        >Наименование товара</span
-      >
-      <input
-        class="inputText"
-        type="text"
-        placeholder="Введите наименование товара"
-        v-model="getProduct.name"
-        @blur="leaveFocus"
-      />
-      <span>Это обязательное поле!</span>
-    </div>
-    <div class="form__input">
-      <span class="head-input" :class="{ 'head-input_require': false }"
-        >Описание товара</span
-      >
+    <InputValue
+      headInput="Наименование товара"
+      inputPlaceholder="Введите наименование товара"
+      v-model="product.name"
+    />
+
+    <InputValue headInput="Описание товара" :inputReq="false">
       <textarea
         cols="30"
         rows="10"
         class="inputText"
         type="text"
         placeholder="Введите описание товара"
-        v-model="getProduct.description"
+        v-model="product.description"
       />
-    </div>
+    </InputValue>
 
-    <div class="form__input">
-      <span class="head-input" :class="{ 'head-input_require': true }"
-        >Ссылка на изображение товара</span
-      >
-      <input
-        class="inputText"
-        type="text"
-        placeholder="Введите ссылку"
-        v-model="getProduct.imageLink"
-        @blur="leaveFocus"
-      />
-      <span>Это обязательное поле!</span>
-    </div>
+    <InputValue
+      headInput="Ссылка на изображение товара"
+      inputPlaceholder="Введите ссылку"
+      v-model="product.imageLink"
+    />
 
-    <div class="form__input">
-      <span class="head-input" :class="{ 'head-input_require': true }"
-        >Цена товара</span
-      >
-      <input
-        class="inputText"
-        type="text"
-        placeholder="Введите цену"
-        v-model="getProduct.price"
-        @blur="leaveFocus"
-        @input="locale()"
-      />
-      <span>Это обязательное поле!</span>
-    </div>
+    <InputValue
+      headInput="Цена товара"
+      inputPlaceholder="Введите цену"
+      @input="locale($event)"
+      :value="product.price"
+    />
 
-    <button :disabled="!getValid" class="btn">Добавить товар</button>
+    <button :disabled="!valid" class="btn">Добавить товар</button>
   </form>
 </template>
 
 <script setup>
-import { mapGetters, mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
+import InputValue from "./InputValue.vue";
 
 export default {
+  components: {
+    InputValue
+  },
   computed: {
-    ...mapGetters(["getValid", "getProduct"]),
+    ...mapState(["product", "valid"])
   },
   methods: {
-    ...mapMutations(["validate", "addCard"]),
-    leaveFocus(event) {
-      if (!event.target.value) {
-        event.target.classList.add("error");
-      } else {
-        event.target.classList.remove("error");
-      }
-    },
-    locale() {
-      let num = Number(this.getProduct.price.replace(/\D/g, ""));
-      this.getProduct.price = num.toLocaleString("ru-RU");
-    },
+    ...mapMutations(["validate", "addCard", "locale"])
   },
 };
 </script>
@@ -96,11 +63,17 @@ export default {
   min-width: 332px;
   margin-right: 16px;
 
+  .input {
+    &:nth-child(4) {
+      margin-bottom: 0;
+    }
+  }
+
   .btn {
     width: 100%;
     background: #7bae73;
     border-radius: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
@@ -116,83 +89,6 @@ export default {
       cursor: default;
       color: #b4b4b4;
       background: #eeeeee;
-    }
-  }
-
-  &__input {
-    position: relative;
-    margin-bottom: 16px;
-
-    &:nth-child(4) {
-      margin: 0;
-    }
-
-    .inputText {
-      width: 100%;
-      background: #fffefb;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-      border: none;
-      padding: 10px 16px 11px;
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 15px;
-      color: #3f3f3f;
-      margin-top: 4px;
-
-      &::placeholder {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 15px;
-        color: #b4b4b4;
-      }
-
-      & + span {
-        display: none;
-      }
-    }
-    .error {
-      border: 1px solid #ff8484;
-
-      & + span {
-        display: inline;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 10px;
-        letter-spacing: -0.02em;
-        color: #ff8484;
-      }
-    }
-
-    textarea {
-      resize: none;
-    }
-
-    .head-input {
-      position: relative;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 10px;
-      line-height: 13px;
-      letter-spacing: -0.02em;
-      color: #49485e;
-      margin-bottom: 4px;
-
-      &_require {
-        &::after {
-          content: "";
-          display: block;
-          position: absolute;
-          right: 0;
-          transform: translateX(100%);
-          top: 0;
-          width: 4px;
-          height: 4px;
-          background: #ff8484;
-          border-radius: 4px;
-        }
-      }
     }
   }
 }
