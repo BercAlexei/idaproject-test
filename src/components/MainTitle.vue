@@ -2,7 +2,7 @@
   <h1 class="title">{{ msg }}</h1>
 </template>
 
-<script setup>
+<script>
 export default {
   props: {
     msg: {

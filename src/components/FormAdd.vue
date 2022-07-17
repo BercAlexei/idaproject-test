@@ -3,7 +3,7 @@
     <InputValue
       headInput="Наименование товара"
       inputPlaceholder="Введите наименование товара"
-      v-model="product.name"
+      v-model.trim="product.name"
     />
 
     <InputValue headInput="Описание товара" :inputReq="false">
@@ -20,12 +20,13 @@
     <InputValue
       headInput="Ссылка на изображение товара"
       inputPlaceholder="Введите ссылку"
-      v-model="product.imageLink"
+      v-model.trim="product.imageLink"
     />
 
     <InputValue
       headInput="Цена товара"
       inputPlaceholder="Введите цену"
+      v-locale
       @input="locale($event)"
       :value="product.price"
     />
@@ -34,7 +35,7 @@
   </form>
 </template>
 
-<script setup>
+<script>
 import { mapMutations, mapState } from "vuex";
 import InputValue from "./InputValue.vue";
 

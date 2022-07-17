@@ -16,12 +16,12 @@
         </div>
       </div>
 
-      <div class="card__content-price">{{ localePrice }} руб.</div>
+      <div class="card__content-price" v-locale>{{ price }}</div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script>
 import { mapMutations } from "vuex";
 
 export default {
@@ -42,12 +42,6 @@ export default {
     price: {
       type: String,
       require: true,
-    },
-  },
-  computed: {
-    localePrice() {
-      let num = Number(this.price.replace(/\D/g, ""));
-      return num.toLocaleString("ru-RU");
     },
   },
   methods: {

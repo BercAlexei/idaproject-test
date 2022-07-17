@@ -19,7 +19,7 @@ export default new Vuex.Store({
       name: "",
       description: "",
       imageLink: "",
-      price: "",
+      price: null,
     },
     condition: 'default'
   },
@@ -81,8 +81,7 @@ export default new Vuex.Store({
     },
     locale(state, val) {
       if (val !== '') {
-        let num = Number(val.replace(/\D/g, ""));
-        state.product.price = num.toLocaleString("ru-RU");
+        state.product.price = Number(val.replace(/\D/g, "")).toLocaleString("ru-RU");
       } else {
         state.product.price = ''
       }
